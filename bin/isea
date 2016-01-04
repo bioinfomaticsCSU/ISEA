@@ -1,0 +1,64 @@
+#!/usr/bin/perl
+use 5.010;
+$pathdir = $0;
+chomp $pathdir;
+$pathdir=~s#/isea$##;
+if(@ARGV>1){
+	say "too many arguement";
+	say "parameter error!\nusage: isea [-fast] [-nocorrection]";
+	exit(0);
+};
+
+if(@ARGV==1){
+	if(!($ARGV[0] eq "-fast")){
+		say "parameter error!\nusage: isea [-fast]";
+		exit(0);
+	}
+};
+
+if(! -e "config"){
+	say "file config doesn't exist\n";
+	exit(-1);
+}
+
+open RSH,">isearun" or die $!;
+
+say RSH "perl $pathdir/parseConfig.pl config \nwait";
+`perl $pathdir/parseConfig.pl config`;
+$rstatus = `echo $?`;
+chomp;
+if($rstatus != 0){
+	say "parseConfig.pl error!\nreturn code = $rstatus\nplease check your config file.";
+	exit(-1);
+}
+
+say RSH "$pathdir/preprocess \nwait";
+`$pathdir/preprocess \nwait`;
+
+say RSH "$pathdir/readins \nwait";
+`$pathdir/readins \nwait`;
+
+if(@ARGV==1 && $ARGV[0] eq "-fast"){
+	say RSH "$pathdir/corr -fast \nwait";
+	`$pathdir/corr -fast \nwait`;
+}else{
+	say RSH "$pathdir/corr  \nwait";
+	`$pathdir/corr  \nwait`;
+}
+
+
+say RSH "$pathdir/asm \nwait";
+`$pathdir/asm \nwait`;
+
+open LIB,"lib.info" or die $!;
+$libline = <LIB>;
+($filenum, $klength) = split /\s/,$libline;
+$rmcmd = "rm ";
+for($i = 1; $i <= $filenum; $i++){
+	$rmcmd = "$rmcmd _isea.$i.fasta $i.out ${i}_filter_pe.txt sta_$i.txt se_readins_$i.txt pe_readins_$i.txt ${i}_error_correction.txt pe_$i.txt se_$i.txt "
+}
+$rmcmd = "$rmcmd index.*bt2 seedstring.txt";
+say RSH $rmcmd;
+`$rmcmd`;
+close RSH;
+
