@@ -19,3 +19,6 @@ make
 	perl your_ISEA's_director/bin/isea [-fast]
    the option -fast will only influence the error correction step, and do not influence the assembly result, if your memory is enough, you can specify -fast.
 
+3)Output.
+combine.fasta contains resulting contigs
+scaffold.fasta contains resulting scaffolds
