@@ -1,4 +1,4 @@
-ISEA is an de nove assembly tool used for paired-read libraries of short reads. To get better performance, you'd better provide a mate pair library.
+ISEA is a de nove assembly tool used for paired-read libraries of short reads. To get better performance, you'd better provide a mate pair library.
        
 1)Installing.      
 Requirements:   
@@ -13,7 +13,7 @@ make
      
 2)Runing.    
 a. configure file "config"     
-   there is a example config file in ISEA's installation directory, you can copy this to your working directory and modify it. There are some comments in this config file, which can help you to use it.      
+   there is a example config file in ISEA's installation directory, you can copy this file to your working directory and modify it. There are some comments in this config file, which can help you to use it.      
        
 b. type command     
 	perl your_ISEA's_director/bin/isea [-fast]     
