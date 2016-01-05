@@ -32,6 +32,7 @@ Requirements:
 g++    
 perl    
 python    
+make
 
 type command:    
 tar zxvf ISEA.tar.gz     
