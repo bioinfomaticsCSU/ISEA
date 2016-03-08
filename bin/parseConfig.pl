@@ -118,12 +118,14 @@ while(<>){
 				}
 				$type = $element;
 			}elsif($cnt == 2){
+				$element = glob $element;
 				if(! -e $element){
 					say STDERR "file $element doestn't exist";
 					exit(-1);
 				}
 				$left = $element;
 			}elsif($cnt == 3){
+				$element = glob $element;
 				if(! -e $element){
 					say STDERR "file $element doestn't exist";
 					exit(-1);
@@ -167,12 +169,14 @@ while(<>){
 				}
 				$type = $element;
 			}elsif($cnt == 2){
+				$element = glob $element;
 				if(! -e $element){
 					say STDERR "file $element doestn't exist";
 					exit(-1);
 				}
 				$left = $element;
 			}elsif($cnt == 3){
+				$element = glob $element;
 				if(! -e $element){
 					say STDERR "file $element doestn't exist";
 					exit(-1);
