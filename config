@@ -1,0 +1,22 @@
+#********** This is a config file **********
+# 
+
+# number of libraries
+lib_num = 2
+
+
+# thread number used in the process of error correction
+thread_num = 10
+
+# kmer size
+k = 21
+
+  
+
+# library info <pr or mp> <file left.fasta>	<file right.fasta>	<overlap>
+# overlap is the length of overlap of reads that used in error correction
+# a larger value of overlap results in better performance and larger memory
+# if it is -1, then it will be assigned a value equal to ( 7/12 * readlength )
+pr lib1.1.fasta lib1.2.fasta -1
+
+mp lib2.1.fasta lib2.2.fasta -1
