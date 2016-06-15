@@ -394,7 +394,7 @@ double GetScore(string & SupportStr,string AssembledString,string CandidateStrin
 		{
 			if(sign==2)
 			{
-				if(lib[index].MaxSpan<500) score-=0.01;
+				//if(lib[index].MaxSpan<500) score-=0.01;
 			}
 		}
 	}
